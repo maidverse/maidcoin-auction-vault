@@ -292,6 +292,16 @@ library UniswapV2Library {
 }
 
 contract MaidCoinAuctionVault {
+
+    event Receive(address indexed sender, uint256 value);
+    event AddLiquidity(
+        uint256 amountTokenDesired,
+        uint256 amountETHDesired,
+        uint256 amountTokenMin,
+        uint256 amountETHMin,
+        uint256 deadline
+    );
+
     address public immutable factory;
     address public immutable token;
     address public immutable WETH;
@@ -311,7 +321,9 @@ contract MaidCoinAuctionVault {
         _;
     }
 
-    receive() external payable {}
+    receive() external payable {
+        emit Receive(msg.sender, msg.value);
+    }
 
     function addLiquidity(
         uint256 amountTokenDesired,
@@ -341,6 +353,14 @@ contract MaidCoinAuctionVault {
         IWETH(WETH).deposit{value: amountETH}();
         assert(IWETH(WETH).transfer(pair, amountETH));
         liquidity = IUniswapV2Pair(pair).mint(address(this));
+
+        emit AddLiquidity(
+            amountTokenDesired,
+            amountETHDesired,
+            amountTokenMin,
+            amountETHMin,
+            deadline
+        );
     }
 
     function _addLiquidity(
