@@ -341,7 +341,7 @@ contract MaidCoinAuctionVault {
             uint256 liquidity
         )
     {
-        require(msg.sender == owner,"MaidCoinAuctionVault: FORBIDDEN");
+        require(msg.sender == owner, "MaidCoinAuctionVault: FORBIDDEN");
         (amountToken, amountETH) = _addLiquidity(
             token,
             WETH,
