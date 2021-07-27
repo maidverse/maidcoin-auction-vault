@@ -295,16 +295,16 @@ contract MaidCoinAuctionVault {
 
     event Receive(address indexed sender, uint256 value);
     event AddLiquidity(
-        uint256 amountTokenDesired,
-        uint256 amountETHDesired,
-        uint256 amountTokenMin,
-        uint256 amountETHMin,
-        uint256 deadline
+        address pair,
+        uint256 amountToken,
+        uint256 amountETH,
+        uint256 liquidity
     );
 
     address public immutable factory;
     address public immutable token;
     address public immutable WETH;
+    address public immutable owner;
 
     constructor(
         address _factory,
@@ -314,6 +314,7 @@ contract MaidCoinAuctionVault {
         factory = _factory;
         token = _token;
         WETH = _WETH;
+        owner = msg.sender;
     }
 
     modifier ensure(uint256 deadline) {
@@ -340,6 +341,7 @@ contract MaidCoinAuctionVault {
             uint256 liquidity
         )
     {
+        require(msg.sender == owner,"MaidCoinAuctionVault: FORBIDDEN");
         (amountToken, amountETH) = _addLiquidity(
             token,
             WETH,
@@ -355,11 +357,10 @@ contract MaidCoinAuctionVault {
         liquidity = IUniswapV2Pair(pair).mint(address(this));
 
         emit AddLiquidity(
-            amountTokenDesired,
-            amountETHDesired,
-            amountTokenMin,
-            amountETHMin,
-            deadline
+            pair,
+            amountToken,
+            amountETH,
+            liquidity
         );
     }
 
