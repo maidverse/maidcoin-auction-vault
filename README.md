@@ -1,4 +1,13 @@
-# maidcoin-auction-vault
+# MaidcoinAuctionVault contracts
 
 ## Mainnet
-[0x95257935915D1BaB38993Ff26C1a1Eb839657CeF](https://etherscan.io/address/0x95257935915d1bab38993ff26c1a1eb839657cef)
+[0x21e5d7ab4bbdcFc25cb09C8948e6485729246b0a](https://etherscan.io/address/0x21e5d7ab4bbdcFc25cb09C8948e6485729246b0a)
+
+## Ropsten
+[0x21e5d7ab4bbdcFc25cb09C8948e6485729246b0a](https://ropsten.etherscan.io/address/0x21e5d7ab4bbdcFc25cb09C8948e6485729246b0a)
+
+## Kovan
+[0x21e5d7ab4bbdcFc25cb09C8948e6485729246b0a](https://kovan.etherscan.io/address/0x21e5d7ab4bbdcFc25cb09C8948e6485729246b0a)
+
+## License
+[MIT](LICENSE)
